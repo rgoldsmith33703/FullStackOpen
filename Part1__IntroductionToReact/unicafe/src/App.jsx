@@ -69,18 +69,18 @@ const Statistics = ({good, neutral, bad}) => {
       { (all === 0) ?  
       <p>No feedback given</p> :
       <div>  
-        <Total text="good" total={good} />
-        <Total text="neutral" total={neutral} />
-        <Total text="bad" total={bad} />
-        <Total text="all" total={all} />
-        <Total text="average" total={avg} />
-        <Total text="positive" total={pos} />
+        <StatisticLine text="good" total={good} />
+        <StatisticLine text="neutral" total={neutral} />
+        <StatisticLine text="bad" total={bad} />
+        <StatisticLine text="all" total={all} />
+        <StatisticLine text="average" total={avg} />
+        <StatisticLine text="positive" total={pos} />
       </div>}
     </>
   )
 }
 
-const Total = ({text, total}) => {
+const StatisticLine = ({text, total}) => {
   return (
     <>
       {text} {total}
