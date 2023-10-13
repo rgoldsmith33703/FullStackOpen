@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react"
 
 const App = () => {
@@ -29,17 +30,47 @@ const App = () => {
       return copyPrevState
     })
   }
+  
+  let maxPointsIndex = points.indexOf(Math.max(...points))
+  let maxPoints = points[maxPointsIndex]
+
+
 
   return (
     <div>
-      {anecdotes[selected]}
-      <br />
-      has {points[selected]} votes
-      <br />
-      <button onClick={voteForAnecdote}>vote</button>
-      <button onClick={randomAnecdote}>next anecdote</button>
+      <Antidote
+        heading="Anecdote of the day"
+        anecdote={anecdotes[selected]}
+        numberVotes={points[selected]} />
+      <Button 
+        handleClick={voteForAnecdote}
+        text="vote"
+      />
+      <Button 
+        handleClick={randomAnecdote}
+        text="next anecdote"
+      />
+      {points.some(e => e > 0) &&
+      <Antidote
+        heading="Anecdote with most votes"
+        anecdote={anecdotes[maxPointsIndex]}
+        numberVotes={maxPoints} />}
     </div>
   )
 }
+
+const Antidote = ({heading, anecdote, numberVotes}) => {
+  return (
+    <div>
+      <h2>{heading}</h2>
+      <p>{anecdote}</p>
+      <p>has {numberVotes} votes</p>
+    </div>
+  )
+}
+
+const Button = ({handleClick, text}) => (
+  <button onClick={handleClick}>{text}</button>
+)
 
 export default App
