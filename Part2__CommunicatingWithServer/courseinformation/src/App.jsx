@@ -1,4 +1,7 @@
 /* eslint-disable react/prop-types */
+
+import Course from './components/Course'
+
 const App = () => {
   const courses = [
     {
@@ -51,56 +54,5 @@ const App = () => {
   ))
   )
 }
-
-const Course = ({course}) => {
-  return (
-    <>
-      <Header name={course.name}/>
-      <Content parts={course.parts}/>
-      <Total parts={course.parts} />
-    </>
-  )
-}
-
-const Header = ({name}) => {
-  return (
-    <>
-      <h1>{name}</h1>
-    </>
-  )
-}
-
-const Content = ({parts}) => {
-  return (
-    <>
-      {parts.map(part => (
-        <Part 
-          key={part.id} 
-          name={part.name}
-          numExercises={part.exercises}
-        />
-      ))}
-    </>
-  )
-}
-
-const Part = ({name, numExercises}) => {
-  return (
-    <>
-      <p>{name} {numExercises}</p>
-    </>
-  )
-}
-
-const Total = ({parts}) => {
-  const totalExercises = parts.reduce((sum, part) => sum + part.exercises, 0)
-
-  return (
-    <p style={{fontWeight: "bold"}}>
-      total of {totalExercises} exercises
-    </p>
-  )
-}
-
 
 export default App
