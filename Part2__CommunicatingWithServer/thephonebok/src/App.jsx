@@ -1,4 +1,7 @@
 import { useState } from "react"
+import Search from './components/Search'
+import Form from './components/Form'
+import NumbersList from "./components/NumbersList"
 
 const App = () => {
   const [persons, setPersons] = useState([{
@@ -8,6 +11,8 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [search, setSearch] = useState('')
+
+
 
   function addNewName(e) {
     e.preventDefault()
@@ -22,51 +27,33 @@ const App = () => {
     setNewNumber('')
   }
 
-function numbersList(search) {
-  const filteredPersons = persons.filter(person => person.name.toLowerCase().includes(search.toLowerCase()));
-  const listItems = filteredPersons.map(person => (
-    <p key={person.name}>
-      {person.name} {person.number}
-    </p>
-  ));
-  return listItems;
-}
+  function handleSearch(e) {
+    setSearch(e.target.value)
+  }
+
+  function handleNewName(e) {
+    setNewName(e.target.value)
+  }
+
+  function handleNewNumber(e) {
+    setNewNumber(e.target.value)
+  }
+
+
 
   return (
     <div>
-      <h2>Phonebook</h2>
-      <p>filter shown with
-        <input 
-          value={search}
-          onChange={e =>
-            (setSearch(e.target.value))}
-        />
-      </p>
-      <form>
-        <h2>add a new</h2>
-        <div>
-          name: <input
-                  value={newName} 
-                  onChange={e => 
-                    (setNewName(e.target.value))}
-                />
-          <br />
-          number: <input
-                  value={newNumber} 
-                  onChange={e => 
-                    (setNewNumber(e.target.value))}
-                />
-        </div>
-        <div>
-          <button 
-            type="submit"
-            onClick={addNewName}>
-              add
-          </button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
-        {numbersList(search)}  
+      <h1>Phonebook</h1>
+      <Search value={search} handleSearch={handleSearch} />
+      <Form newName={newName}
+            newNumber={newNumber}
+            handleNewName={handleNewName}
+            handleNewNumber={handleNewNumber}
+            addNewName={addNewName}
+      />
+      <NumbersList persons={persons}
+                   search={search}
+      /> 
     </div>
   )
 }
