@@ -22,11 +22,15 @@ const App = () => {
     e.preventDefault()
     persons.includes(newName) 
       ? alert(`${newName} is already added to phonebook`)
-      : setPersons(persons.concat(
-        {
-          name: newName, 
-          number: newNumber
-        }))
+      : axios
+          .post('http://localhost:3001/persons', 
+          {
+            name: newName,
+            number: newNumber
+          })
+          .then(res => {
+            setPersons(persons.concat(res.data))
+          })
     setNewName('')
     setNewNumber('')
   }
