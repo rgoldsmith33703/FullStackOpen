@@ -16,7 +16,7 @@ const App = () => {
       .then(initialPersons => {
         setPersons(initialPersons)
       })
-    }, [])
+    }, [persons])
 
   function addNewName(e) {
     e.preventDefault()
@@ -32,6 +32,10 @@ const App = () => {
           })
     setNewName('')
     setNewNumber('')
+  }
+
+  function deletePerson(e) {
+    personService.remove(e.target.value)
   }
 
   function handleSearch(e) {
@@ -60,6 +64,7 @@ const App = () => {
       />
       <NumbersList persons={persons}
                    search={search}
+                   deletePerson={deletePerson}
       /> 
     </div>
   )
