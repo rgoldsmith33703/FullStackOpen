@@ -4,6 +4,7 @@ import Search from './components/Search'
 import Form from './components/Form'
 import NumbersList from "./components/NumbersList"
 import Notification from "./components/Notification"
+import ErrorMessage from "./components/ErrorMessage"
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -11,6 +12,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [search, setSearch] = useState('')
   const [notificationMessage, setNotificationMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -54,6 +56,10 @@ const App = () => {
       })
       .catch(error => {
         console.log(error)
+        setErrorMessage(`${updatedPerson.name} not found`)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 3000)
         setPersons(persons.filter(person => person.id !== personToUpdate.id))
       })
   }
@@ -106,6 +112,7 @@ const App = () => {
             addNewName={addNewName}
       />
       <Notification message={notificationMessage} />
+      <ErrorMessage message={errorMessage} />
       <NumbersList persons={persons}
                    search={search}
                    deletePerson={deletePerson}
