@@ -3,12 +3,14 @@ import personService from "./services/persons"
 import Search from './components/Search'
 import Form from './components/Form'
 import NumbersList from "./components/NumbersList"
+import Notification from "./components/Notification"
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [search, setSearch] = useState('')
+  const [notificationMessage, setNotificationMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -28,6 +30,12 @@ const App = () => {
       .then(returnedPerson => {
         setPersons(persons.concat(returnedPerson))
       })
+      .then(() => {
+        setNotificationMessage(`${newName} added to phone book`)
+        setTimeout(() => {
+          setNotificationMessage(null)
+        }, 3000)
+      })
   }
 
   function updatePerson(personToUpdate) {
@@ -37,6 +45,12 @@ const App = () => {
       .update(personToUpdate.id, updatedPerson)
       .then(returnedPerson => {
         setPersons(persons.map(person => person.id !== personToUpdate.id ? person : returnedPerson))
+      })
+      .then(() => {
+        setNotificationMessage(`${updatedPerson.name} number in phonebook updated to ${updatedPerson.number} `)
+        setTimeout(() => {
+          setNotificationMessage(null)
+        }, 3000)
       })
       .catch(error => {
         console.log(error)
@@ -91,6 +105,7 @@ const App = () => {
             handleNewNumber={handleNewNumber}
             addNewName={addNewName}
       />
+      <Notification message={notificationMessage} />
       <NumbersList persons={persons}
                    search={search}
                    deletePerson={deletePerson}
