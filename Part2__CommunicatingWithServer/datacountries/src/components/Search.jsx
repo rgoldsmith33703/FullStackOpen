@@ -1,9 +1,9 @@
-const Search = ({search, text, handleSearch}) => {
+const Search = ({searchTerm, text, handleSearch}) => {
   return (
     <>
       {text}
       <input 
-        value={search}
+        value={searchTerm}
         onChange={handleSearch} 
       />
     </>

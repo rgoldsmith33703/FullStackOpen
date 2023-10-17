@@ -4,15 +4,15 @@ import Search from './components/Search'
 
 const App = () => {
   
-  const [search, setSearch] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
   
   function handleSearch(e) {
-    setSearch(e.target.value)
+    setSearchTerm(e.target.value)
   }
   
   return (
     <Search 
-      search={search}
+      searchTerm={searchTerm}
       text={'find countries'}
       handleSearch={handleSearch}  
     />
