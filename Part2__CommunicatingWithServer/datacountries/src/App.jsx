@@ -32,6 +32,7 @@ const App = () => {
       <CountriesList 
         countriesList={countriesList}
         searchTerm={searchTerm} 
+        setSearchTerm={setSearchTerm}
       />
     </div>
   )

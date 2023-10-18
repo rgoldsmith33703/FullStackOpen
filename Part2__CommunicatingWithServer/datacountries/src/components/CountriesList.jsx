@@ -4,13 +4,19 @@ import CountryInfo from "./CountryInfo"
 
 
 
-const CountriesList = ({ searchTerm, countriesList }) => {
+const CountriesList = ({ searchTerm, setSearchTerm,countriesList }) => {
 
-  const filteredCountries = useMemo(() => {
+
+  let filteredCountries = useMemo(() => {
     return countriesList.filter(country => {
       return country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
     })
   }, [searchTerm, countriesList])
+
+  function showCountry(e) {
+    filteredCountries = filteredCountries.filter(country => (country.name.common === e.target.value))
+    setSearchTerm(e.target.value) // updates search box and forces re-render
+  }
 
   function renderFilteredCountries(filteredCountries) {
     if (searchTerm === '') {
@@ -19,7 +25,8 @@ const CountriesList = ({ searchTerm, countriesList }) => {
         return <p>Please enter a more specific search query.</p>
     } else if (filteredCountries.length > 1) {
         return <FilteredCountriesList 
-                  filteredCountries={filteredCountries}/>
+                  filteredCountries={filteredCountries}
+                  handleClick={showCountry}/>
     } else if (filteredCountries.length === 1) {
         return <CountryInfo 
                   filteredCountries={filteredCountries}/>
