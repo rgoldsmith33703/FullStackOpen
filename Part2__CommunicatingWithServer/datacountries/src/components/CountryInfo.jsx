@@ -1,4 +1,5 @@
 import LanguageList from "./LanguageList"
+import Weather from "./Weather"
 
 const CountryInfo = ({filteredCountries}) => {
   const country = filteredCountries[0]
@@ -14,6 +15,7 @@ const CountryInfo = ({filteredCountries}) => {
         <LanguageList languages={languages}/>
       </ul>
       <img src={country.flags.png} alt={country.flags.alt}/>
+      <Weather country={country} />
     </>
   )
 }
