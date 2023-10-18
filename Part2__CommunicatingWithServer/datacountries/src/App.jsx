@@ -16,19 +16,23 @@ const App = () => {
         setCountriesList(initialCountries)
       })
   }, [])
-  
+
   function handleSearch(e) {
     setSearchTerm(e.target.value)
   }
+
   
   return (
     <div>
       <Search
         searchTerm={searchTerm}
-        text={'find countries'}
         handleSearch={handleSearch}
+        text={'find countries'}
       />
-      <CountriesList countriesList={countriesList} />
+      <CountriesList 
+        countriesList={countriesList}
+        searchTerm={searchTerm} 
+      />
     </div>
   )
 }
