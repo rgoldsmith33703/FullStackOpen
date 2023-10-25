@@ -20,7 +20,7 @@ const App = () => {
       .then(initialPersons => {
         setPersons(initialPersons)
       })
-    }, [persons])
+    }, [])
 
 
   function createNewPerson() {
@@ -84,6 +84,7 @@ const App = () => {
     const personToDelete = persons.filter(person => person.id === Number(e.target.value))[0]
     if (window.confirm(`Would you like to delete ${personToDelete.name}?`)) {
       personService.remove(e.target.value)
+      setPersons(persons.filter(person => person.id !== Number(e.target.value)))
     }
   }
 
