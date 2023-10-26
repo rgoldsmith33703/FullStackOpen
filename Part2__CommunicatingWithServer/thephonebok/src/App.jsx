@@ -82,6 +82,9 @@ const App = () => {
 
   function deletePerson(e) {
     personService.remove(e.target.value)
+      .then(() => {
+        setPersons(persons.map(person => person.id !== e.target.value))
+      })
   }
 
   function handleSearch(e) {
