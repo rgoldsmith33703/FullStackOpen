@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React from 'react'
 const ErrorMessage = ({ message }) => {
   const style = {
     color: 'red',
@@ -9,7 +10,7 @@ const ErrorMessage = ({ message }) => {
     padding: 10,
     marginBottom: 10
   }
-  
+
   if (message === null) {
     return null
   }

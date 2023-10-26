@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
-export default function Input({text, value, handleChange}) {
+import React from 'react'
+export default function Input({ text, value, handleChange }) {
   return (
     <div>
       {text}: <input
-                value={value} 
-                onChange={handleChange}
-              />
+        value={value}
+        onChange={handleChange}
+      />
     </div>
   )
 }

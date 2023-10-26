@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React from 'react'
 const Notification = ({ message }) => {
   const style = {
     color: 'green',
@@ -9,7 +10,7 @@ const Notification = ({ message }) => {
     padding: 10,
     marginBottom: 10
   }
-  
+
   if (message === null) {
     return null
   }

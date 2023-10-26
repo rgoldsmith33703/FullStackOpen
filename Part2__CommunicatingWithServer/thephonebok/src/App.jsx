@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react"
-import personService from "./services/persons"
+import { React, useState, useEffect } from 'react'
+import personService from './services/persons'
 import Search from './components/Search'
 import Form from './components/Form'
-import NumbersList from "./components/NumbersList"
-import Notification from "./components/Notification"
-import ErrorMessage from "./components/ErrorMessage"
+import NumbersList from './components/NumbersList'
+import Notification from './components/Notification'
+import ErrorMessage from './components/ErrorMessage'
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -20,7 +20,7 @@ const App = () => {
       .then(initialPersons => {
         setPersons(initialPersons)
       })
-    }, [])
+  }, [])
 
 
   function createNewPerson() {
@@ -48,7 +48,7 @@ const App = () => {
   }
 
   function updatePerson(personToUpdate) {
-    const updatedPerson = { ...personToUpdate, number: newNumber}
+    const updatedPerson = { ...personToUpdate, number: newNumber }
 
     personService
       .update(personToUpdate.id, updatedPerson)
@@ -87,19 +87,19 @@ const App = () => {
     setNewNumber('')
   }
 
- async function deletePerson(e) {
-  const id = e.target.value 
+  async function deletePerson(e) {
+    const id = e.target.value
 
-  try {
-    await personService.remove(id)
-    setPersons(persons.filter(person => person.id !== id))
-  } catch (error) {
-    console.log(error)
-    setErrorMessage('Failed to delete the contact.')
-    setTimeout(() => {
-      setErrorMessage(null)
-    }, 3000)
-  }
+    try {
+      await personService.remove(id)
+      setPersons(persons.filter(person => person.id !== id))
+    } catch (error) {
+      console.log(error)
+      setErrorMessage('Failed to delete the contact.')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 3000)
+    }
   }
 
   function handleSearch(e) {
@@ -121,17 +121,17 @@ const App = () => {
       <h1>Phonebook</h1>
       <Search value={search} handleSearch={handleSearch} />
       <Form newName={newName}
-            newNumber={newNumber}
-            handleNewName={handleNewName}
-            handleNewNumber={handleNewNumber}
-            addNewName={addNewName}
+        newNumber={newNumber}
+        handleNewName={handleNewName}
+        handleNewNumber={handleNewNumber}
+        addNewName={addNewName}
       />
       <Notification message={notificationMessage} />
       <ErrorMessage message={errorMessage} />
       <NumbersList persons={persons}
-                   search={search}
-                   deletePerson={deletePerson}
-      /> 
+        search={search}
+        deletePerson={deletePerson}
+      />
     </div>
   )
 }

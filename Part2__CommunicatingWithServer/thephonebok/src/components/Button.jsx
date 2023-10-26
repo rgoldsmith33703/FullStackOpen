@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-export default function Button({text, type, handleClick}) {
+import React from 'react'
+export default function Button({ text, type, handleClick }) {
   return (
-    <button 
+    <button
       type={type}
       onClick={handleClick}>
       {text}
