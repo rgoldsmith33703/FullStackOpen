@@ -38,6 +38,13 @@ const App = () => {
           setNotificationMessage(null)
         }, 3000)
       })
+      .catch(error => {
+        console.log(error.response.data.error)
+        setErrorMessage('Validation Error')
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 3000)
+      })
   }
 
   function updatePerson(personToUpdate) {
