@@ -81,11 +81,7 @@ const App = () => {
   }
 
   function deletePerson(e) {
-    const personToDelete = persons.filter(person => person.id === Number(e.target.value))[0]
-    if (window.confirm(`Would you like to delete ${personToDelete.name}?`)) {
-      personService.remove(e.target.value)
-      setPersons(persons.filter(person => person.id !== Number(e.target.value)))
-    }
+    personService.remove(e.target.value)
   }
 
   function handleSearch(e) {
