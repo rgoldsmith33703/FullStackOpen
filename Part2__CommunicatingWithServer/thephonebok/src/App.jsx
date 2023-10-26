@@ -80,10 +80,19 @@ const App = () => {
     setNewNumber('')
   }
 
-  function deletePerson(e) {
-    personService.remove(e.target.value)
-      .then(personService.getAll()
-        .then(initialPersons => setPersons(initialPersons)))
+ async function deletePerson(e) {
+  const id = e.target.value 
+
+  try {
+    await personService.remove(id)
+    setPersons(persons.filter(person => person.id !== id))
+  } catch (error) {
+    console.log(error)
+    setErrorMessage('Failed to delete the contact.')
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 3000)
+  }
   }
 
   function handleSearch(e) {
