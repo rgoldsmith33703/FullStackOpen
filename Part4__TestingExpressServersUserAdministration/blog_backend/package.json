@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "blog.test.js"
   },
   "author": "Richard Goldsmith",
@@ -15,6 +16,7 @@
     "mongoose": "^7.6.3"
   },
   "devDependencies": {
-    "eslint": "^8.52.0"
+    "eslint": "^8.52.0",
+    "nodemon": "^3.0.1"
   }
 }
